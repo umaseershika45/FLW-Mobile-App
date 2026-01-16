@@ -140,10 +140,18 @@ object AppModule {
             .create(AmritApiService::class.java)
     }
 
+    /* @Singleton
+     @Provides
+     fun provideTokenInsertTmcInterceptor(): TokenInsertTmcInterceptor {
+         return TokenInsertTmcInterceptor()
+     }*/
+
     @Singleton
     @Provides
-    fun provideTokenInsertTmcInterceptor(): TokenInsertTmcInterceptor {
-        return TokenInsertTmcInterceptor()
+    fun provideTokenInsertTmcInterceptor(
+        preferenceDao: PreferenceDao
+    ): TokenInsertTmcInterceptor {
+        return TokenInsertTmcInterceptor(preferenceDao)
     }
 
     @Singleton
